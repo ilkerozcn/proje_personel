@@ -10,9 +10,12 @@
     }
 }
 
-namespace proje_personel.kullanici_projeDataSetTableAdapters {
-    
-    
+namespace proje_personel.kullanici_projeDataSetTableAdapters
+{
+    partial class proje_ilcelerTableAdapter
+    {
+    }
+
     public partial class musteri_bilgileriTableAdapter {
     }
 }
