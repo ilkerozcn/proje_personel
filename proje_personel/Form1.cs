@@ -275,7 +275,6 @@ namespace proje_personel
                 (e.KeyChar != '.'))
             {
                 e.Handled = true;
-                ControlPaint.DrawBorder(maskedTextBox17.BorderStyle, this.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
             }
         }
 
