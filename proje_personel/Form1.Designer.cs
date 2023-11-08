@@ -276,6 +276,8 @@ namespace proje_personel
             this.maskedTextBox3.Name = "maskedTextBox3";
             this.maskedTextBox3.Size = new System.Drawing.Size(110, 20);
             this.maskedTextBox3.TabIndex = 32;
+            this.maskedTextBox3.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox3_MaskInputRejected);
+            this.maskedTextBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox1_KeyPress);
             // 
             // maskedTextBox4
             // 
@@ -283,6 +285,7 @@ namespace proje_personel
             this.maskedTextBox4.Name = "maskedTextBox4";
             this.maskedTextBox4.Size = new System.Drawing.Size(110, 20);
             this.maskedTextBox4.TabIndex = 33;
+            this.maskedTextBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox1_KeyPress);
             // 
             // maskedTextBox5
             // 
@@ -292,6 +295,8 @@ namespace proje_personel
             this.maskedTextBox5.Size = new System.Drawing.Size(110, 20);
             this.maskedTextBox5.TabIndex = 34;
             this.maskedTextBox5.ValidatingType = typeof(int);
+            this.maskedTextBox5.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox5_MaskInputRejected);
+            this.maskedTextBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox17_KeyPress);
             // 
             // maskedTextBox6
             // 
@@ -301,6 +306,7 @@ namespace proje_personel
             this.maskedTextBox6.Size = new System.Drawing.Size(110, 20);
             this.maskedTextBox6.TabIndex = 35;
             this.maskedTextBox6.ValidatingType = typeof(System.DateTime);
+            this.maskedTextBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox17_KeyPress);
             // 
             // maskedTextBox7
             // 
@@ -308,6 +314,7 @@ namespace proje_personel
             this.maskedTextBox7.Name = "maskedTextBox7";
             this.maskedTextBox7.Size = new System.Drawing.Size(110, 20);
             this.maskedTextBox7.TabIndex = 36;
+            this.maskedTextBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox1_KeyPress);
             // 
             // maskedTextBox9
             // 
@@ -315,6 +322,7 @@ namespace proje_personel
             this.maskedTextBox9.Name = "maskedTextBox9";
             this.maskedTextBox9.Size = new System.Drawing.Size(110, 20);
             this.maskedTextBox9.TabIndex = 38;
+            this.maskedTextBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox1_KeyPress);
             // 
             // maskedTextBox10
             // 
@@ -322,6 +330,7 @@ namespace proje_personel
             this.maskedTextBox10.Name = "maskedTextBox10";
             this.maskedTextBox10.Size = new System.Drawing.Size(110, 20);
             this.maskedTextBox10.TabIndex = 39;
+            this.maskedTextBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox1_KeyPress);
             // 
             // button2
             // 
@@ -384,6 +393,8 @@ namespace proje_personel
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(110, 20);
             this.maskedTextBox1.TabIndex = 43;
+            this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            this.maskedTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox1_KeyPress);
             // 
             // label1
             // 
@@ -635,6 +646,7 @@ namespace proje_personel
             this.maskedTextBox16.Name = "maskedTextBox16";
             this.maskedTextBox16.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBox16.TabIndex = 75;
+            this.maskedTextBox16.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox16_MaskInputRejected);
             // 
             // label27
             // 
@@ -653,6 +665,8 @@ namespace proje_personel
             this.maskedTextBox17.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBox17.TabIndex = 73;
             this.maskedTextBox17.ValidatingType = typeof(int);
+            this.maskedTextBox17.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox17_MaskInputRejected);
+            this.maskedTextBox17.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox17_KeyPress);
             // 
             // label28
             // 
@@ -671,6 +685,7 @@ namespace proje_personel
             this.maskedTextBox18.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBox18.TabIndex = 71;
             this.maskedTextBox18.ValidatingType = typeof(int);
+            this.maskedTextBox18.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox17_KeyPress);
             // 
             // label29
             // 
@@ -689,6 +704,7 @@ namespace proje_personel
             this.maskedTextBox19.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBox19.TabIndex = 69;
             this.maskedTextBox19.ValidatingType = typeof(int);
+            this.maskedTextBox19.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox17_KeyPress);
             // 
             // label25
             // 

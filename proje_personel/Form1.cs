@@ -8,6 +8,8 @@ using System.Collections;
 using System.Runtime.Remoting.Messaging;
 using System.ComponentModel;
 using System.Net.NetworkInformation;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing;
 
 namespace proje_personel
 {
@@ -49,6 +51,8 @@ namespace proje_personel
                 baglanti.Close();
                 return;
             }
+
+            email_text_kontrol();
 
             baglanti.Close();
 
@@ -105,6 +109,21 @@ namespace proje_personel
             baglanti.Close();
 
             MessageBox.Show("Kayıt Tamamlandı.");
+        }
+
+        private void email_text_kontrol()
+        {
+            System.Text.RegularExpressions.Regex rEmail = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$");
+
+            if (maskedTextBox16.Text.Length > 0 && maskedTextBox16.Text.Trim().Length != 0)
+            {
+                if (!rEmail.IsMatch(maskedTextBox16.Text.Trim()))
+                {
+                    MessageBox.Show("Email adresinin doğru yazıldığından emin olun.");
+                    maskedTextBox16.SelectAll();
+                    return;
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -224,6 +243,50 @@ namespace proje_personel
             var iList = JsonConvert.DeserializeObject<IList>(json);
 
             comboBox4.DataSource = iList;
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar) || char.IsLetter(e.KeyChar))
+            {
+                return;
+            }
+            e.Handled = true;
+        }
+
+        private void maskedTextBox3_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox5_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox17_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+                ControlPaint.DrawBorder(maskedTextBox17.BorderStyle, this.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+            }
+        }
+
+        private void maskedTextBox16_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox17_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }
