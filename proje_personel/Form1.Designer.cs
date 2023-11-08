@@ -107,6 +107,7 @@ namespace proje_personel
             this.label29 = new System.Windows.Forms.Label();
             this.maskedTextBox19 = new System.Windows.Forms.MaskedTextBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.projecinsiyetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullaniciprojeDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanici_projeDataSet)).BeginInit();
@@ -134,27 +135,27 @@ namespace proje_personel
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(122, 238);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "TC No:";
+            this.label3.Text = "*TC No:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(122, 202);
+            this.label4.Location = new System.Drawing.Point(113, 203);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Soyad:";
+            this.label4.Text = "*Soyad:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(116, 313);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 13);
+            this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 16;
-            this.label5.Text = "Cinsiyet:";
+            this.label5.Text = "*Cinsiyet:";
             // 
             // label6
             // 
@@ -170,18 +171,18 @@ namespace proje_personel
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(329, 168);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 13);
+            this.label8.Size = new System.Drawing.Size(69, 13);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Doğum Yeri:";
+            this.label8.Text = "*Doğum Yeri:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(89, 274);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 13);
+            this.label10.Size = new System.Drawing.Size(77, 13);
             this.label10.TabIndex = 19;
-            this.label10.Text = "Doğum Tarihi:";
+            this.label10.Text = "*Doğum Tarihi:";
             // 
             // comboBox2
             // 
@@ -247,27 +248,27 @@ namespace proje_personel
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(337, 206);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 13);
+            this.label11.Size = new System.Drawing.Size(57, 13);
             this.label11.TabIndex = 25;
-            this.label11.Text = "Anne Adı:";
+            this.label11.Text = "*Anne Adı:";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(337, 244);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.Size = new System.Drawing.Size(57, 13);
             this.label12.TabIndex = 29;
-            this.label12.Text = "Baba Adı:";
+            this.label12.Text = "*Baba Adı:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(297, 283);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(97, 13);
+            this.label13.Size = new System.Drawing.Size(101, 13);
             this.label13.TabIndex = 27;
-            this.label13.Text = "Anne Kızlık Soyadı:";
+            this.label13.Text = "*Anne Kızlık Soyadı:";
             // 
             // maskedTextBox3
             // 
@@ -389,9 +390,9 @@ namespace proje_personel
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(132, 130);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 13);
+            this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 44;
-            this.label1.Text = "İsim:";
+            this.label1.Text = "*İsim:";
             // 
             // label9
             // 
@@ -408,9 +409,9 @@ namespace proje_personel
             this.label14.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label14.Location = new System.Drawing.Point(355, 359);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(35, 13);
+            this.label14.Size = new System.Drawing.Size(39, 13);
             this.label14.TabIndex = 48;
-            this.label14.Text = "Şube:";
+            this.label14.Text = "*Şube:";
             this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // comboBox5
@@ -471,9 +472,9 @@ namespace proje_personel
             this.label15.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label15.Location = new System.Drawing.Point(670, 161);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(30, 13);
+            this.label15.Size = new System.Drawing.Size(34, 13);
             this.label15.TabIndex = 52;
-            this.label15.Text = " İlçe:";
+            this.label15.Text = " *İlçe:";
             // 
             // label16
             // 
@@ -491,9 +492,9 @@ namespace proje_personel
             this.label17.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label17.Location = new System.Drawing.Point(682, 129);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(18, 13);
+            this.label17.Size = new System.Drawing.Size(22, 13);
             this.label17.TabIndex = 55;
-            this.label17.Text = " İl:";
+            this.label17.Text = " *İl:";
             // 
             // comboBox7
             // 
@@ -533,9 +534,9 @@ namespace proje_personel
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(657, 232);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(47, 13);
+            this.label19.Size = new System.Drawing.Size(51, 13);
             this.label19.TabIndex = 59;
-            this.label19.Text = "Mahalle:";
+            this.label19.Text = "*Mahalle:";
             // 
             // maskedTextBox8
             // 
@@ -581,9 +582,9 @@ namespace proje_personel
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(661, 378);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(40, 13);
+            this.label22.Size = new System.Drawing.Size(44, 13);
             this.label22.TabIndex = 67;
-            this.label22.Text = "Ev No:";
+            this.label22.Text = "*Ev No:";
             // 
             // maskedTextBox13
             // 
@@ -597,9 +598,9 @@ namespace proje_personel
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(657, 342);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(48, 13);
+            this.label23.Size = new System.Drawing.Size(52, 13);
             this.label23.TabIndex = 65;
-            this.label23.Text = "Bina No:";
+            this.label23.Text = "*Bina No:";
             // 
             // maskedTextBox14
             // 
@@ -640,9 +641,9 @@ namespace proje_personel
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(861, 199);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(85, 13);
+            this.label27.Size = new System.Drawing.Size(89, 13);
             this.label27.TabIndex = 74;
-            this.label27.Text = "Cep Telefon No:";
+            this.label27.Text = "*Cep Telefon No:";
             // 
             // maskedTextBox17
             // 
@@ -665,7 +666,7 @@ namespace proje_personel
             // maskedTextBox18
             // 
             this.maskedTextBox18.Location = new System.Drawing.Point(948, 162);
-            this.maskedTextBox18.Mask = "000000000000";
+            this.maskedTextBox18.Mask = "0000000000";
             this.maskedTextBox18.Name = "maskedTextBox18";
             this.maskedTextBox18.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBox18.TabIndex = 71;
@@ -683,7 +684,7 @@ namespace proje_personel
             // maskedTextBox19
             // 
             this.maskedTextBox19.Location = new System.Drawing.Point(948, 126);
-            this.maskedTextBox19.Mask = "00000000000";
+            this.maskedTextBox19.Mask = "0000000000";
             this.maskedTextBox19.Name = "maskedTextBox19";
             this.maskedTextBox19.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBox19.TabIndex = 69;
@@ -699,11 +700,22 @@ namespace proje_personel
             this.label25.TabIndex = 77;
             this.label25.Text = "Kişisel Bilgiler";
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.ForeColor = System.Drawing.Color.Red;
+            this.label30.Location = new System.Drawing.Point(986, 462);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(176, 13);
+            this.label30.TabIndex = 78;
+            this.label30.Text = "(*) Alanlarin doldurulması zorunludur.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 483);
+            this.Controls.Add(this.label30);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.maskedTextBox16);
@@ -851,5 +863,6 @@ namespace proje_personel
         private MaskedTextBox maskedTextBox19;
         private Label label25;
         private BindingSource projeillerBindingSource2;
+        private Label label30;
     }
 }

@@ -23,6 +23,35 @@ namespace proje_personel
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(maskedTextBox1.Text) || string.IsNullOrEmpty(maskedTextBox4.Text) || string.IsNullOrEmpty(maskedTextBox5.Text)
+                || string.IsNullOrEmpty(maskedTextBox6.Text) || string.IsNullOrEmpty(comboBox2.SelectedValue.ToString()) || string.IsNullOrEmpty(comboBox3.SelectedValue.ToString()) || string.IsNullOrEmpty(maskedTextBox7.Text) ||
+                string.IsNullOrEmpty(maskedTextBox9.Text) || string.IsNullOrEmpty(maskedTextBox10.Text) || string.IsNullOrEmpty(comboBox5.SelectedValue.ToString()) || string.IsNullOrEmpty(comboBox7.SelectedValue.ToString()) || string.IsNullOrEmpty(ilceid.ToString()) ||
+                string.IsNullOrEmpty(maskedTextBox8.Text) || string.IsNullOrEmpty(maskedTextBox14.Text) || string.IsNullOrEmpty(maskedTextBox13.Text) || string.IsNullOrEmpty(maskedTextBox17.Text))
+            {
+                MessageBox.Show("Tüm zorunlu alanlar doldurulmalı.");
+                return;
+            }
+
+            string kontrol = "SELECT COUNT(*) FROM musteri_bilgileri WHERE tc_no = @tc_no";
+
+            baglanti.Open();
+            SqlCommand komut0 = new SqlCommand();
+            komut0 = new SqlCommand(kontrol, baglanti);
+            komut0.Connection = baglanti;
+
+            komut0.Parameters.AddWithValue("@tc_no", maskedTextBox5.Text);
+
+            int count = (int)komut0.ExecuteScalar();
+
+            if (count > 0)
+            {
+                MessageBox.Show("Girilen kullanıcı sistemde kayıtlı.");
+                baglanti.Close();
+                return;
+            }
+
+            baglanti.Close();
+
             string ekle = "INSERT INTO musteri_bilgileri(ad,ikinci_ad,soyad,tc_no,dogum_tarihi,cinsiyet,medeni_durum,doogum_yeri, anne_ad, baba_ad, anne_kizlik_soyad, egitim_durumu, musteri_subesi, musteri_olma_tarihi) values (@ad," +
                 " @ikinci_ad, @soyad, @tc_no, @dogum_tarihi, @cinsiyet, @medeni_durum, @doogum_yeri, @anne_ad, @baba_ad, @anne_kizlik_soyad, @egitim_durumu, @musteri_subesi, @musteri_olma_tarihi)";
             string iletisimekle = "INSERT INTO musteri_iletisim_bilgileri(il, ilce, koy, mahalle, cadde, sokak, bina_no, ev_no, ev_telefon_no, is_telefon_no, cep_telefon_no, email) " +
@@ -75,6 +104,7 @@ namespace proje_personel
 
             baglanti.Close();
 
+            MessageBox.Show("Kayıt Tamamlandı.");
         }
 
         private void Form1_Load(object sender, EventArgs e)
