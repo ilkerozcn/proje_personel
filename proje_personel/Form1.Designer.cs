@@ -115,6 +115,7 @@ namespace proje_personel
             this.label30 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label32 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.projecinsiyetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullaniciprojeDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanici_projeDataSet)).BeginInit();
@@ -213,6 +214,7 @@ namespace proje_personel
             this.label7.Size = new System.Drawing.Size(178, 25);
             this.label7.TabIndex = 51;
             this.label7.Text = "MÜŞTERİ KAYIT";
+            this.label7.Visible = false;
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // projeillerBindingSource2
@@ -870,11 +872,25 @@ namespace proje_personel
             this.panel1.TabIndex = 85;
             this.panel1.Visible = false;
             // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label32.Location = new System.Drawing.Point(470, 36);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(260, 25);
+            this.label32.TabIndex = 86;
+            this.label32.Text = "MÜŞTERİ GÜNCELLEME";
+            this.label32.Visible = false;
+            this.label32.Click += new System.EventHandler(this.label32_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1196, 489);
+            this.Controls.Add(this.label32);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.maskedTextBox15);
@@ -984,5 +1000,6 @@ namespace proje_personel
         private Label label30;
         private Button button4;
         private Panel panel1;
+        private Label label32;
     }
 }

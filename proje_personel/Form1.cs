@@ -330,7 +330,8 @@ namespace proje_personel
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            label32.Visible = false;
+            label7.Visible = true;
             panel1.Visible = true;
             button2.Visible = true;
             button4.Visible = false;
@@ -340,7 +341,8 @@ namespace proje_personel
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
+        {   label32.Visible = true;
+            label7.Visible = false;
             panel1.Visible = false;
             button2.Visible = false;
             button4.Visible = true;
@@ -389,6 +391,7 @@ namespace proje_personel
                             panel1.Visible = false;
                             MessageBox.Show("Girilen Tc no ile müşteri bulunamadı.");
                         }
+
                         string ad = reader.GetString(reader.GetOrdinal("ad"));
                         string ikinci_ad = reader.GetString(reader.GetOrdinal("ikinci_ad"));
                         string soyad = reader.GetString(reader.GetOrdinal("soyad"));
@@ -485,5 +488,9 @@ namespace proje_personel
             baglanti.Close();*/
         }
 
+        private void label32_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
