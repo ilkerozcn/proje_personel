@@ -24,10 +24,11 @@ namespace proje_personel
 
         SqlConnection baglanti = new SqlConnection("Data Source=DESKTOP-PPM9TPL;Initial Catalog=kullanici_proje;Integrated Security=True");
         int ilceid;
+        Int64 guncelMusteriNo;
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (!button4.Visible && string.IsNullOrEmpty(maskedTextBox1.Text) || string.IsNullOrEmpty(maskedTextBox4.Text) || string.IsNullOrEmpty(maskedTextBox5.Text)
+            if (string.IsNullOrEmpty(maskedTextBox1.Text) || string.IsNullOrEmpty(maskedTextBox4.Text) || string.IsNullOrEmpty(maskedTextBox5.Text)
                 || string.IsNullOrEmpty(maskedTextBox6.Text) || string.IsNullOrEmpty(comboBox2.SelectedValue.ToString()) || string.IsNullOrEmpty(comboBox3.SelectedValue.ToString()) || string.IsNullOrEmpty(maskedTextBox7.Text) ||
                 string.IsNullOrEmpty(maskedTextBox9.Text) || string.IsNullOrEmpty(maskedTextBox10.Text) || string.IsNullOrEmpty(comboBox5.SelectedValue.ToString()) || string.IsNullOrEmpty(comboBox7.SelectedValue.ToString()) || string.IsNullOrEmpty(ilceid.ToString()) ||
                 string.IsNullOrEmpty(maskedTextBox8.Text) || string.IsNullOrEmpty(maskedTextBox14.Text) || string.IsNullOrEmpty(maskedTextBox13.Text) || string.IsNullOrEmpty(maskedTextBox17.Text))
@@ -58,78 +59,83 @@ namespace proje_personel
 
             baglanti.Close();
 
-            string musteriNoQuery = "SELECT TOP 1 musteri_no FROM musteri_bilgileri ORDER BY musteri_no DESC;";
-            string ekle = "INSERT INTO musteri_bilgileri(musteri_no, ad,ikinci_ad,soyad,tc_no,dogum_tarihi,cinsiyet,medeni_durum,doogum_yeri, anne_ad, baba_ad, anne_kizlik_soyad, egitim_durumu, musteri_subesi, musteri_olma_tarihi) values (@musteri_no, @ad," +
-                " @ikinci_ad, @soyad, @tc_no, @dogum_tarihi, @cinsiyet, @medeni_durum, @doogum_yeri, @anne_ad, @baba_ad, @anne_kizlik_soyad, @egitim_durumu, @musteri_subesi, @musteri_olma_tarihi)";
-            string iletisimekle = "INSERT INTO musteri_iletisim_bilgileri(musteri_no, il, ilce, koy, mahalle, cadde, sokak, bina_no, ev_no, ev_telefon_no, is_telefon_no, cep_telefon_no, email) " +
-                "values (@musteri_no, @il, @ilce, @koy, @mahalle, @cadde, @sokak, @bina_no, @ev_no, @ev_telefon_no, @is_telefon_no, @cep_telefon_no, @email)";
-
-            baglanti.Open();
-            SqlCommand idKomut = new SqlCommand();
-            idKomut = new SqlCommand(musteriNoQuery, baglanti);
-            Int64 musteriNo;
-            Int64? sonmusterino = (Int64)idKomut.ExecuteScalar();
-            baglanti.Close();
-
-            if (!sonmusterino.HasValue)
+            if (!button4.Visible)
             {
-                musteriNo = 1;
+                string musteriNoQuery = "SELECT TOP 1 musteri_no FROM musteri_bilgileri ORDER BY musteri_no DESC;";
+                string ekle = "INSERT INTO musteri_bilgileri(musteri_no, ad,ikinci_ad, soyad, durum,tc_no,dogum_tarihi,cinsiyet,medeni_durum,doogum_yeri, anne_ad, baba_ad, anne_kizlik_soyad, egitim_durumu, musteri_subesi, musteri_olma_tarihi) values (@musteri_no, @ad," +
+                    " @ikinci_ad, @soyad, @durum, @tc_no, @dogum_tarihi, @cinsiyet, @medeni_durum, @doogum_yeri, @anne_ad, @baba_ad, @anne_kizlik_soyad, @egitim_durumu, @musteri_subesi, @musteri_olma_tarihi)";
+                string iletisimekle = "INSERT INTO musteri_iletisim_bilgileri(musteri_no, il, ilce, koy, mahalle, cadde, sokak, bina_no, ev_no, ev_telefon_no, is_telefon_no, cep_telefon_no, email) " +
+                    "values (@musteri_no, @il, @ilce, @koy, @mahalle, @cadde, @sokak, @bina_no, @ev_no, @ev_telefon_no, @is_telefon_no, @cep_telefon_no, @email)";
+
+                baglanti.Open();
+                SqlCommand idKomut = new SqlCommand();
+                idKomut = new SqlCommand(musteriNoQuery, baglanti);
+                Int64 musteriNo;
+                Int64? sonmusterino = (Int64)idKomut.ExecuteScalar();
+                baglanti.Close();
+
+                if (!sonmusterino.HasValue)
+                {
+                    musteriNo = 1;
+                }
+                else
+                {
+                    musteriNo = sonmusterino.Value + 1;
+                    guncelMusteriNo = musteriNo;
+                }
+
+                SqlCommand komut1 = new SqlCommand();
+                komut1 = new SqlCommand(ekle, baglanti);
+                baglanti.Open();
+
+                komut1.Connection = baglanti;
+
+                komut1.Parameters.AddWithValue("@musteri_no", musteriNo);
+                komut1.Parameters.AddWithValue("@ad", maskedTextBox1.Text);
+                komut1.Parameters.AddWithValue("@ikinci_ad", maskedTextBox3.Text);
+                komut1.Parameters.AddWithValue("@soyad", maskedTextBox4.Text);
+                komut1.Parameters.AddWithValue("@durum", 1);
+                komut1.Parameters.AddWithValue("@tc_no", maskedTextBox5.Text);
+                komut1.Parameters.AddWithValue("@dogum_tarihi", maskedTextBox6.Text);
+                komut1.Parameters.AddWithValue("@cinsiyet", comboBox2.SelectedValue);
+                komut1.Parameters.AddWithValue("@medeni_durum", comboBox1.SelectedValue);
+                komut1.Parameters.AddWithValue("@doogum_yeri", comboBox3.SelectedValue);
+                komut1.Parameters.AddWithValue("@anne_ad", maskedTextBox7.Text);
+                komut1.Parameters.AddWithValue("@baba_ad", maskedTextBox9.Text);
+                komut1.Parameters.AddWithValue("@anne_kizlik_soyad", maskedTextBox10.Text);
+                komut1.Parameters.AddWithValue("@egitim_durumu", comboBox6.SelectedValue);
+                komut1.Parameters.AddWithValue("@musteri_subesi", comboBox5.SelectedValue);
+                komut1.Parameters.AddWithValue("@musteri_olma_tarihi", DateTime.Now.ToString("MM - dd - yyyy"));
+
+                komut1.ExecuteNonQuery();
+                baglanti.Close();
+
+                baglanti.Open();
+                SqlCommand komut2 = new SqlCommand();
+                komut2 = new SqlCommand(iletisimekle, baglanti);
+
+                komut2.Connection = baglanti;
+
+                komut2.Parameters.AddWithValue("@musteri_no", musteriNo);
+                komut2.Parameters.AddWithValue("@il", comboBox7.SelectedValue);
+                komut2.Parameters.AddWithValue("@ilce", ilceid);
+                komut2.Parameters.AddWithValue("@koy", maskedTextBox2.Text);
+                komut2.Parameters.AddWithValue("@mahalle", maskedTextBox8.Text);
+                komut2.Parameters.AddWithValue("@cadde", maskedTextBox12.Text);
+                komut2.Parameters.AddWithValue("@sokak", maskedTextBox11.Text);
+                komut2.Parameters.AddWithValue("@bina_no", maskedTextBox14.Text);
+                komut2.Parameters.AddWithValue("@ev_no", maskedTextBox13.Text);
+                komut2.Parameters.AddWithValue("@ev_telefon_no", maskedTextBox19.Text);
+                komut2.Parameters.AddWithValue("@is_telefon_no", maskedTextBox18.Text);
+                komut2.Parameters.AddWithValue("@cep_telefon_no", maskedTextBox17.Text);
+                komut2.Parameters.AddWithValue("@email", maskedTextBox16.Text);
+
+                komut2.ExecuteNonQuery();
+
+                baglanti.Close();
+
+                MessageBox.Show("Kayıt Tamamlandı.");
             }
-            else
-            {
-                musteriNo = sonmusterino.Value + 1;
-            }
-
-            SqlCommand komut1 = new SqlCommand();
-            komut1 = new SqlCommand(ekle, baglanti);
-            baglanti.Open();
-
-            komut1.Connection = baglanti;
-
-            komut1.Parameters.AddWithValue("@musteri_no", musteriNo);
-            komut1.Parameters.AddWithValue("@ad", maskedTextBox1.Text);
-            komut1.Parameters.AddWithValue("@ikinci_ad", maskedTextBox3.Text);
-            komut1.Parameters.AddWithValue("@soyad", maskedTextBox4.Text);
-            komut1.Parameters.AddWithValue("@tc_no", maskedTextBox5.Text);
-            komut1.Parameters.AddWithValue("@dogum_tarihi", maskedTextBox6.Text);
-            komut1.Parameters.AddWithValue("@cinsiyet", comboBox2.SelectedValue);
-            komut1.Parameters.AddWithValue("@medeni_durum", comboBox1.SelectedValue);
-            komut1.Parameters.AddWithValue("@doogum_yeri", comboBox3.SelectedValue);
-            komut1.Parameters.AddWithValue("@anne_ad", maskedTextBox7.Text);
-            komut1.Parameters.AddWithValue("@baba_ad", maskedTextBox9.Text);
-            komut1.Parameters.AddWithValue("@anne_kizlik_soyad", maskedTextBox10.Text);
-            komut1.Parameters.AddWithValue("@egitim_durumu", comboBox6.SelectedValue);
-            komut1.Parameters.AddWithValue("@musteri_subesi", comboBox5.SelectedValue);
-            komut1.Parameters.AddWithValue("@musteri_olma_tarihi", DateTime.Now.ToString("MM - dd - yyyy"));
-
-            komut1.ExecuteNonQuery();
-            baglanti.Close();
-
-            baglanti.Open();
-            SqlCommand komut2 = new SqlCommand();
-            komut2 = new SqlCommand(iletisimekle, baglanti);
-
-            komut2.Connection = baglanti;
-
-            komut2.Parameters.AddWithValue("@musteri_no", musteriNo);
-            komut2.Parameters.AddWithValue("@il",comboBox7.SelectedValue);
-            komut2.Parameters.AddWithValue("@ilce", ilceid);
-            komut2.Parameters.AddWithValue("@koy", maskedTextBox2.Text);
-            komut2.Parameters.AddWithValue("@mahalle", maskedTextBox8.Text);
-            komut2.Parameters.AddWithValue("@cadde", maskedTextBox12.Text);
-            komut2.Parameters.AddWithValue("@sokak", maskedTextBox11.Text);
-            komut2.Parameters.AddWithValue("@bina_no", maskedTextBox14.Text);
-            komut2.Parameters.AddWithValue("@ev_no", maskedTextBox13.Text);
-            komut2.Parameters.AddWithValue("@ev_telefon_no", maskedTextBox19.Text);
-            komut2.Parameters.AddWithValue("@is_telefon_no", maskedTextBox18.Text);
-            komut2.Parameters.AddWithValue("@cep_telefon_no", maskedTextBox17.Text);
-            komut2.Parameters.AddWithValue("@email", maskedTextBox16.Text);
-
-            komut2.ExecuteNonQuery();
-
-            baglanti.Close();
-
-            MessageBox.Show("Kayıt Tamamlandı.");
         }
 
         private void email_text_kontrol()
@@ -311,7 +317,7 @@ namespace proje_personel
 
         private void maskedTextBox6_Validating(object sender, CancelEventArgs e)
         {
-            Regex reg = new Regex(@"^(\d{1,2})/(\d{1,2})/(\d{4})$");
+            Regex reg = new Regex(@"^(\d{1,2}).(\d{1,2}).(\d{4})$");
             Match m = reg.Match(maskedTextBox6.Text);
             if (m.Success)
             {
@@ -355,6 +361,36 @@ namespace proje_personel
         private void button4_Click(object sender, EventArgs e)
         {
             button2_Click(sender, e);
+            string kontrol = "SELECT musteri_no FROM musteri_bilgileri WHERE tc_no = '" + maskedTextBox15.Text + "'";
+
+            baglanti.Open();
+            SqlCommand komut0 = new SqlCommand();
+            komut0 = new SqlCommand(kontrol, baglanti);
+            komut0.Connection = baglanti;
+            Int64 no = (Int64)komut0.ExecuteScalar();
+            baglanti.Close();
+
+            string updateMusteriBilgileriQuery = "UPDATE musteri_bilgileri SET ad = '" + maskedTextBox1.Text + "', ikinci_ad = '" + maskedTextBox3.Text + "', soyad = '" + maskedTextBox4.Text + "', tc_no = '" + maskedTextBox5.Text +
+                "', dogum_tarihi = '" + DateTime.ParseExact(maskedTextBox6.Text, "dd.MM.yyyy", null) + "', cinsiyet = '" + comboBox2.SelectedValue + "', medeni_durum = '" + comboBox1.SelectedValue + "', doogum_yeri = '" + comboBox3.SelectedValue + "', anne_ad = '" + maskedTextBox7.Text +
+                "', baba_ad = '" + maskedTextBox9.Text + "', anne_kizlik_soyad = '" + maskedTextBox10.Text + "', egitim_durumu = '" + comboBox6.SelectedValue + "', musteri_subesi = '" + comboBox5.SelectedValue +
+                "', musteri_olma_tarihi = '" + DateTime.Now.ToString("MM - dd - yyyy") + "' WHERE musteri_no = " + no + "";
+            string updateMusteriIlesitimQuery = "UPDATE musteri_iletisim_bilgileri SET il = '" + comboBox7.SelectedValue + "', ilce = '" + ilceid + "', koy = '" + maskedTextBox2.Text + "', mahalle= '" + maskedTextBox8.Text +
+                "', cadde = '" + maskedTextBox12.Text + "', sokak = '" + maskedTextBox11.Text + "', bina_no = '" + maskedTextBox14.Text + "', ev_no = '" + maskedTextBox13.Text + "', ev_telefon_no = '" + maskedTextBox19.Text +
+                "', is_telefon_no = '" + maskedTextBox18.Text + "', cep_telefon_no = '" + maskedTextBox17.Text + "', email = '" + maskedTextBox16.Text + "' WHERE musteri_no = '" + no + "'";
+            Console.WriteLine(updateMusteriBilgileriQuery);
+            baglanti.Open();
+            SqlCommand komut1 = new SqlCommand();
+            komut1 = new SqlCommand(updateMusteriBilgileriQuery, baglanti);
+            komut1.Connection = baglanti;
+            komut1.ExecuteNonQuery();
+            baglanti.Close();
+            komut1 = new SqlCommand(updateMusteriIlesitimQuery, baglanti);
+            baglanti.Open();
+
+            komut1.Connection = baglanti;
+            komut1.ExecuteNonQuery();
+            baglanti.Close();
+            MessageBox.Show("Güncelleme Tamamlandı.");
         }
 
         private void button5_Click(object sender, EventArgs e)
