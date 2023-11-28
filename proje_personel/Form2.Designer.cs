@@ -6,7 +6,7 @@ using System;
 
 namespace proje_personel
 {
-    partial class Form1
+    partial class Form2
     {
         /// <summary>
         ///  Required designer variable.
@@ -117,6 +117,7 @@ namespace proje_personel
             this.panel1 = new System.Windows.Forms.Panel();
             this.label40 = new System.Windows.Forms.Label();
             this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.projedurumBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -140,7 +141,6 @@ namespace proje_personel
             this.doviz_cinsiTableAdapter = new proje_personel.kullanici_projeDataSetTableAdapters.doviz_cinsiTableAdapter();
             this.label39 = new System.Windows.Forms.Label();
             this.kullanici_projeDataSet1 = new proje_personel.kullanici_projeDataSet();
-            this.projedurumBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.proje_durumTableAdapter = new proje_personel.kullanici_projeDataSetTableAdapters.proje_durumTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.projecinsiyetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullaniciprojeDataSetBindingSource)).BeginInit();
@@ -154,11 +154,11 @@ namespace proje_personel
             ((System.ComponentModel.ISupportInitialize)(this.egitimdurumuBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projeillerBindingSource2)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.projedurumBindingSource)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dovizcinsiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanici_projeDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projedurumBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // projecinsiyetBindingSource
@@ -263,6 +263,7 @@ namespace proje_personel
             this.button1.TabIndex = 79;
             this.button1.Text = "Kayıt Ekranı";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
@@ -275,6 +276,7 @@ namespace proje_personel
             this.button3.TabIndex = 80;
             this.button3.Text = "Güncelleme Ekranı";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label31
@@ -927,6 +929,11 @@ namespace proje_personel
             this.comboBox10.TabIndex = 89;
             this.comboBox10.ValueMember = "id";
             // 
+            // projedurumBindingSource
+            // 
+            this.projedurumBindingSource.DataMember = "proje_durum";
+            this.projedurumBindingSource.DataSource = this.kullaniciprojeDataSetBindingSource;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -1154,16 +1161,11 @@ namespace proje_personel
             this.kullanici_projeDataSet1.DataSetName = "kullanici_projeDataSet";
             this.kullanici_projeDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // projedurumBindingSource
-            // 
-            this.projedurumBindingSource.DataMember = "proje_durum";
-            this.projedurumBindingSource.DataSource = this.kullaniciprojeDataSetBindingSource;
-            // 
             // proje_durumTableAdapter
             // 
             this.proje_durumTableAdapter.ClearBeforeFill = true;
             // 
-            // Form1
+            // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1179,7 +1181,7 @@ namespace proje_personel
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
-            this.Name = "Form1";
+            this.Name = "Form2";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.projecinsiyetBindingSource)).EndInit();
@@ -1195,12 +1197,12 @@ namespace proje_personel
             ((System.ComponentModel.ISupportInitialize)(this.projeillerBindingSource2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.projedurumBindingSource)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dovizcinsiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanici_projeDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projedurumBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

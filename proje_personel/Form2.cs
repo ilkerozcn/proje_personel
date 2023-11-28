@@ -15,9 +15,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace proje_personel
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
         }
@@ -38,7 +38,8 @@ namespace proje_personel
                 guncelle = false;
                 MessageBox.Show("Tüm zorunlu alanlar doldurulmalı.");
                 return;
-            } else
+            }
+            else
             {
                 guncelle = true;
             }
@@ -268,7 +269,7 @@ namespace proje_personel
 
         private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(!(comboBox7.SelectedIndex > -1 ))
+            if (!(comboBox7.SelectedIndex > -1))
             {
                 comboBox7.SelectedIndex = 0;
             }
@@ -341,7 +342,7 @@ namespace proje_personel
             if (e.Cancel)
             {
                 MessageBox.Show("Doğum tarihini doğru yazdığınızdan emin olunuz.");
-                    e.Cancel = false;
+                e.Cancel = false;
             }
         }
 
@@ -360,7 +361,8 @@ namespace proje_personel
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {   label32.Visible = true;
+        {
+            label32.Visible = true;
             label7.Visible = false;
             panel1.Visible = false;
             label39.Visible = false;
@@ -392,7 +394,7 @@ namespace proje_personel
             string updateMusteriBilgileriQuery = "UPDATE musteri_bilgileri SET ad = '" + maskedTextBox1.Text + "', ikinci_ad = '" + maskedTextBox3.Text + "', soyad = '" + maskedTextBox4.Text + "', tc_no = '" + maskedTextBox5.Text +
                 "', dogum_tarihi = '" + DateTime.ParseExact(maskedTextBox6.Text, "dd.MM.yyyy", null) + "', cinsiyet = '" + comboBox2.SelectedValue + "', medeni_durum = '" + comboBox1.SelectedValue + "', doogum_yeri = '" + comboBox3.SelectedValue + "', anne_ad = '" + maskedTextBox7.Text +
                 "', baba_ad = '" + maskedTextBox9.Text + "', anne_kizlik_soyad = '" + maskedTextBox10.Text + "', egitim_durumu = '" + comboBox6.SelectedValue + "', musteri_subesi = '" + comboBox5.SelectedValue +
-                "', musteri_olma_tarihi = '" + DateTime.Now.ToString("MM - dd - yyyy")+ "', durum = '" + comboBox10.SelectedValue + "' WHERE musteri_no = " + no + "";
+                "', musteri_olma_tarihi = '" + DateTime.Now.ToString("MM - dd - yyyy") + "', durum = '" + comboBox10.SelectedValue + "' WHERE musteri_no = " + no + "";
             string updateMusteriIlesitimQuery = "UPDATE musteri_iletisim_bilgileri SET il = '" + comboBox7.SelectedValue + "', ilce = '" + ilceid + "', koy = '" + maskedTextBox2.Text + "', mahalle= '" + maskedTextBox8.Text +
                 "', cadde = '" + maskedTextBox12.Text + "', sokak = '" + maskedTextBox11.Text + "', bina_no = '" + maskedTextBox14.Text + "', ev_no = '" + maskedTextBox13.Text + "', ev_telefon_no = '" + maskedTextBox19.Text +
                 "', is_telefon_no = '" + maskedTextBox18.Text + "', cep_telefon_no = '" + maskedTextBox17.Text + "', email = '" + maskedTextBox16.Text + "' WHERE musteri_no = '" + no + "'";
@@ -420,7 +422,8 @@ namespace proje_personel
             var musteri = musteriKomut.ExecuteReader();
             Console.WriteLine(musteri);
             baglanti.Close()
-            */;
+            */
+            ;
             int cinsiyet = 0, medeniDurum = 0, egitimDurumu = 0, sube = 0, dogumYeri = 0;
             bool musteriVarMi = false;
 
@@ -434,7 +437,7 @@ namespace proje_personel
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
-                    {  
+                    {
                         Int64 musteriNo = reader.GetInt64(reader.GetOrdinal("musteri_no"));
                         if (musteriNo > 0)
                         {
@@ -526,7 +529,8 @@ namespace proje_personel
                     }
                 }
             }
-            else {
+            else
+            {
                 panel1.Visible = false;
                 MessageBox.Show("Girilen Tc no ile müşteri bulunamadı.");
             }
@@ -605,7 +609,8 @@ namespace proje_personel
                         {
                             MessageBox.Show("Girilen Tc no ile müşteri bulunamadı.");
                         }
-                        if (reader.GetInt32(reader.GetOrdinal("durum")) == 2) {
+                        if (reader.GetInt32(reader.GetOrdinal("durum")) == 2)
+                        {
                             MessageBox.Show("Kullanıcın durumu pasif. Hesap açılamaz.");
                             return;
                         }
@@ -647,6 +652,7 @@ namespace proje_personel
             if (!musteriVarMi)
             {
                 MessageBox.Show("Girilen Tc no ile müşteri bulunamadı.");
+                panel2.Visible = true;
             }
         }
 
@@ -717,7 +723,7 @@ namespace proje_personel
 
             string input = "0015800000" + comboBox8.SelectedValue + "00000" + (hesapSayisi + 1);
             Int64 hesap_no = Int64.Parse(input);
-            
+
             SqlCommand komut1 = new SqlCommand();
             komut1 = new SqlCommand(ekle, baglanti);
             komut1.Connection = baglanti;
