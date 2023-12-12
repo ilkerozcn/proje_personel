@@ -121,6 +121,7 @@ namespace proje_personel
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label38 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -135,6 +136,7 @@ namespace proje_personel
             this.button7 = new System.Windows.Forms.Button();
             this.maskedTextBox20 = new System.Windows.Forms.MaskedTextBox();
             this.label33 = new System.Windows.Forms.Label();
+            this.musterihesapbilgileriBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label32 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
@@ -142,6 +144,9 @@ namespace proje_personel
             this.label39 = new System.Windows.Forms.Label();
             this.kullanici_projeDataSet1 = new proje_personel.kullanici_projeDataSet();
             this.proje_durumTableAdapter = new proje_personel.kullanici_projeDataSetTableAdapters.proje_durumTableAdapter();
+            this.musteri_hesap_bilgileriTableAdapter = new proje_personel.kullanici_projeDataSetTableAdapters.musteri_hesap_bilgileriTableAdapter();
+            this.kullanici_projeDataSet2 = new proje_personel.kullanici_projeDataSet();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.projecinsiyetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullaniciprojeDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanici_projeDataSet)).BeginInit();
@@ -157,8 +162,12 @@ namespace proje_personel
             ((System.ComponentModel.ISupportInitialize)(this.projedurumBindingSource)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dovizcinsiBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterihesapbilgileriBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanici_projeDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kullanici_projeDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // projecinsiyetBindingSource
@@ -948,6 +957,8 @@ namespace proje_personel
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Controls.Add(this.dataGridView2);
+            this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.label38);
             this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.textBox2);
@@ -970,10 +981,19 @@ namespace proje_personel
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(15, 64);
+            this.panel2.Location = new System.Drawing.Point(2, 48);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(895, 294);
+            this.panel2.Size = new System.Drawing.Size(1072, 364);
             this.panel2.TabIndex = 98;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(44, 262);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(647, 150);
+            this.dataGridView1.TabIndex = 99;
             // 
             // label38
             // 
@@ -1105,6 +1125,7 @@ namespace proje_personel
             this.maskedTextBox20.Size = new System.Drawing.Size(122, 20);
             this.maskedTextBox20.TabIndex = 86;
             this.maskedTextBox20.ValidatingType = typeof(int);
+            this.maskedTextBox20.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox20_MaskInputRejected);
             // 
             // label33
             // 
@@ -1114,6 +1135,11 @@ namespace proje_personel
             this.label33.Size = new System.Drawing.Size(40, 13);
             this.label33.TabIndex = 85;
             this.label33.Text = "Tc No:";
+            // 
+            // musterihesapbilgileriBindingSource
+            // 
+            this.musterihesapbilgileriBindingSource.DataMember = "musteri_hesap_bilgileri";
+            this.musterihesapbilgileriBindingSource.DataSource = this.kullaniciprojeDataSetBindingSource;
             // 
             // label32
             // 
@@ -1165,6 +1191,23 @@ namespace proje_personel
             // 
             this.proje_durumTableAdapter.ClearBeforeFill = true;
             // 
+            // musteri_hesap_bilgileriTableAdapter
+            // 
+            this.musteri_hesap_bilgileriTableAdapter.ClearBeforeFill = true;
+            // 
+            // kullanici_projeDataSet2
+            // 
+            this.kullanici_projeDataSet2.DataSetName = "kullanici_projeDataSet";
+            this.kullanici_projeDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(685, 262);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(348, 150);
+            this.dataGridView2.TabIndex = 100;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1201,8 +1244,12 @@ namespace proje_personel
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dovizcinsiBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterihesapbilgileriBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kullanici_projeDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kullanici_projeDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1316,5 +1363,10 @@ namespace proje_personel
         private kullanici_projeDataSet kullanici_projeDataSet1;
         private BindingSource projedurumBindingSource;
         private kullanici_projeDataSetTableAdapters.proje_durumTableAdapter proje_durumTableAdapter;
+        private BindingSource musterihesapbilgileriBindingSource;
+        private kullanici_projeDataSetTableAdapters.musteri_hesap_bilgileriTableAdapter musteri_hesap_bilgileriTableAdapter;
+        private DataGridView dataGridView1;
+        private kullanici_projeDataSet kullanici_projeDataSet2;
+        private DataGridView dataGridView2;
     }
 }

@@ -12,6 +12,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using System.Collections.Specialized;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using static proje_personel.Form2;
 
 namespace proje_personel
 {
@@ -30,10 +36,10 @@ namespace proje_personel
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(maskedTextBox1.Text) || string.IsNullOrEmpty(maskedTextBox4.Text) || string.IsNullOrEmpty(maskedTextBox5.Text)
-                || string.IsNullOrEmpty(maskedTextBox6.Text) || string.IsNullOrEmpty(comboBox2.SelectedValue.ToString()) || string.IsNullOrEmpty(comboBox3.SelectedValue.ToString()) || string.IsNullOrEmpty(maskedTextBox7.Text) ||
-                string.IsNullOrEmpty(maskedTextBox9.Text) || string.IsNullOrEmpty(maskedTextBox10.Text) || string.IsNullOrEmpty(comboBox5.SelectedValue.ToString()) || string.IsNullOrEmpty(comboBox7.SelectedValue.ToString()) || string.IsNullOrEmpty(ilceid.ToString()) ||
-                string.IsNullOrEmpty(maskedTextBox8.Text) || string.IsNullOrEmpty(maskedTextBox14.Text) || string.IsNullOrEmpty(maskedTextBox13.Text) || string.IsNullOrEmpty(maskedTextBox17.Text))
+            if (string.IsNullOrEmpty(maskedTextBox1.Text) || string.IsNullOrEmpty(maskedTextBox4.Text) || string.IsNullOrEmpty(maskedTextBox5.Text) ||
+              string.IsNullOrEmpty(maskedTextBox6.Text) || string.IsNullOrEmpty(comboBox2.SelectedValue.ToString()) || string.IsNullOrEmpty(comboBox3.SelectedValue.ToString()) || string.IsNullOrEmpty(maskedTextBox7.Text) ||
+              string.IsNullOrEmpty(maskedTextBox9.Text) || string.IsNullOrEmpty(maskedTextBox10.Text) || string.IsNullOrEmpty(comboBox5.SelectedValue.ToString()) || string.IsNullOrEmpty(comboBox7.SelectedValue.ToString()) || string.IsNullOrEmpty(ilceid.ToString()) ||
+              string.IsNullOrEmpty(maskedTextBox8.Text) || string.IsNullOrEmpty(maskedTextBox14.Text) || string.IsNullOrEmpty(maskedTextBox13.Text) || string.IsNullOrEmpty(maskedTextBox17.Text))
             {
                 guncelle = false;
                 MessageBox.Show("Tüm zorunlu alanlar doldurulmalı.");
@@ -70,9 +76,9 @@ namespace proje_personel
             {
                 string musteriNoQuery = "SELECT TOP 1 musteri_no FROM musteri_bilgileri ORDER BY musteri_no DESC;";
                 string ekle = "INSERT INTO musteri_bilgileri(musteri_no, ad,ikinci_ad, soyad, durum,tc_no,dogum_tarihi,cinsiyet,medeni_durum,doogum_yeri, anne_ad, baba_ad, anne_kizlik_soyad, egitim_durumu, musteri_subesi, musteri_olma_tarihi) values (@musteri_no, @ad," +
-                    " @ikinci_ad, @soyad, @durum, @tc_no, @dogum_tarihi, @cinsiyet, @medeni_durum, @doogum_yeri, @anne_ad, @baba_ad, @anne_kizlik_soyad, @egitim_durumu, @musteri_subesi, @musteri_olma_tarihi)";
+                  " @ikinci_ad, @soyad, @durum, @tc_no, @dogum_tarihi, @cinsiyet, @medeni_durum, @doogum_yeri, @anne_ad, @baba_ad, @anne_kizlik_soyad, @egitim_durumu, @musteri_subesi, @musteri_olma_tarihi)";
                 string iletisimekle = "INSERT INTO musteri_iletisim_bilgileri(musteri_no, il, ilce, koy, mahalle, cadde, sokak, bina_no, ev_no, ev_telefon_no, is_telefon_no, cep_telefon_no, email) " +
-                    "values (@musteri_no, @il, @ilce, @koy, @mahalle, @cadde, @sokak, @bina_no, @ev_no, @ev_telefon_no, @is_telefon_no, @cep_telefon_no, @email)";
+                  "values (@musteri_no, @il, @ilce, @koy, @mahalle, @cadde, @sokak, @bina_no, @ev_no, @ev_telefon_no, @is_telefon_no, @cep_telefon_no, @email)";
 
                 baglanti.Open();
                 SqlCommand idKomut = new SqlCommand();
@@ -181,9 +187,7 @@ namespace proje_personel
 
         }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-        }
+        private void label10_Click(object sender, EventArgs e) { }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -207,6 +211,8 @@ namespace proje_personel
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'kullanici_projeDataSet.musteri_hesap_bilgileri' table. You can move, or remove it, as needed.
+            this.musteri_hesap_bilgileriTableAdapter.Fill(this.kullanici_projeDataSet.musteri_hesap_bilgileri);
             // TODO: This line of code loads data into the 'kullanici_projeDataSet.proje_durum' table. You can move, or remove it, as needed.
             this.proje_durumTableAdapter.Fill(this.kullanici_projeDataSet.proje_durum);
             // TODO: This line of code loads data into the 'kullanici_projeDataSet.doviz_cinsi' table. You can move, or remove it, as needed.
@@ -248,9 +254,7 @@ namespace proje_personel
 
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void label14_Click(object sender, EventArgs e)
         {
@@ -311,7 +315,7 @@ namespace proje_personel
         private void maskedTextBox17_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-                (e.KeyChar != '.'))
+              (e.KeyChar != '.'))
             {
                 e.Handled = true;
             }
@@ -374,7 +378,6 @@ namespace proje_personel
             tabControl1.Visible = false;
         }
 
-
         private void button4_Click(object sender, EventArgs e)
         {
             button2_Click(sender, e);
@@ -392,12 +395,12 @@ namespace proje_personel
             baglanti.Close();
 
             string updateMusteriBilgileriQuery = "UPDATE musteri_bilgileri SET ad = '" + maskedTextBox1.Text + "', ikinci_ad = '" + maskedTextBox3.Text + "', soyad = '" + maskedTextBox4.Text + "', tc_no = '" + maskedTextBox5.Text +
-                "', dogum_tarihi = '" + DateTime.ParseExact(maskedTextBox6.Text, "dd.MM.yyyy", null) + "', cinsiyet = '" + comboBox2.SelectedValue + "', medeni_durum = '" + comboBox1.SelectedValue + "', doogum_yeri = '" + comboBox3.SelectedValue + "', anne_ad = '" + maskedTextBox7.Text +
-                "', baba_ad = '" + maskedTextBox9.Text + "', anne_kizlik_soyad = '" + maskedTextBox10.Text + "', egitim_durumu = '" + comboBox6.SelectedValue + "', musteri_subesi = '" + comboBox5.SelectedValue +
-                "', musteri_olma_tarihi = '" + DateTime.Now.ToString("MM - dd - yyyy") + "', durum = '" + comboBox10.SelectedValue + "' WHERE musteri_no = " + no + "";
+              "', dogum_tarihi = '" + DateTime.ParseExact(maskedTextBox6.Text, "dd.MM.yyyy", null) + "', cinsiyet = '" + comboBox2.SelectedValue + "', medeni_durum = '" + comboBox1.SelectedValue + "', doogum_yeri = '" + comboBox3.SelectedValue + "', anne_ad = '" + maskedTextBox7.Text +
+              "', baba_ad = '" + maskedTextBox9.Text + "', anne_kizlik_soyad = '" + maskedTextBox10.Text + "', egitim_durumu = '" + comboBox6.SelectedValue + "', musteri_subesi = '" + comboBox5.SelectedValue +
+              "', musteri_olma_tarihi = '" + DateTime.Now.ToString("MM - dd - yyyy") + "', durum = '" + comboBox10.SelectedValue + "' WHERE musteri_no = " + no + "";
             string updateMusteriIlesitimQuery = "UPDATE musteri_iletisim_bilgileri SET il = '" + comboBox7.SelectedValue + "', ilce = '" + ilceid + "', koy = '" + maskedTextBox2.Text + "', mahalle= '" + maskedTextBox8.Text +
-                "', cadde = '" + maskedTextBox12.Text + "', sokak = '" + maskedTextBox11.Text + "', bina_no = '" + maskedTextBox14.Text + "', ev_no = '" + maskedTextBox13.Text + "', ev_telefon_no = '" + maskedTextBox19.Text +
-                "', is_telefon_no = '" + maskedTextBox18.Text + "', cep_telefon_no = '" + maskedTextBox17.Text + "', email = '" + maskedTextBox16.Text + "' WHERE musteri_no = '" + no + "'";
+              "', cadde = '" + maskedTextBox12.Text + "', sokak = '" + maskedTextBox11.Text + "', bina_no = '" + maskedTextBox14.Text + "', ev_no = '" + maskedTextBox13.Text + "', ev_telefon_no = '" + maskedTextBox19.Text +
+              "', is_telefon_no = '" + maskedTextBox18.Text + "', cep_telefon_no = '" + maskedTextBox17.Text + "', email = '" + maskedTextBox16.Text + "' WHERE musteri_no = '" + no + "'";
             Console.WriteLine(updateMusteriBilgileriQuery);
             baglanti.Open();
             SqlCommand komut1 = new SqlCommand();
@@ -540,7 +543,7 @@ namespace proje_personel
             komut0.Connection = baglanti;
             Console.WriteLine((string)komut0.ExecuteScalar());
             //comboBox2.ValueMember = (string)komut0.ExecuteScalar();
-            
+
             komut0 = new SqlCommand("Select medeni_durum FROM proje_medeni_durum WHERE id = '" + medeniDurum.ToString() + "'", baglanti);
 
             Console.WriteLine((string)komut0.ExecuteScalar());
@@ -584,11 +587,31 @@ namespace proje_personel
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private async void button7_Click(object sender, EventArgs e)
         {
+            decimal usdRate = 0, eurRate = 0, gbpRate = 0, rubRate = 0;
             int cinsiyet = 0, medeniDurum = 0, egitimDurumu = 0, sube = 0, dogumYeri = 0;
             bool musteriVarMi = false;
+            try
+            {
+                string apiUrl = "https://api.exchangerate-api.com/v4/latest/TRY";
 
+                var exchangeRates = await GetExchangeRates(apiUrl);
+
+                usdRate = exchangeRates.Rates["USD"].ToObject<decimal>();
+                eurRate = exchangeRates.Rates["EUR"].ToObject<decimal>();
+                gbpRate = exchangeRates.Rates["GBP"].ToObject<decimal>();
+                rubRate = exchangeRates.Rates["RUB"].ToObject<decimal>();
+
+                Console.WriteLine($"USD: {usdRate}");
+                Console.WriteLine($"EUR: {eurRate}");
+                Console.WriteLine($"GBP: {gbpRate}");
+                Console.WriteLine($"RUB: {rubRate}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-PPM9TPL;Initial Catalog=kullanici_proje;Integrated Security=True"))
             {
                 connection.Open();
@@ -649,6 +672,81 @@ namespace proje_personel
                     }
                 }
             }
+            using (var connection1 = new SqlConnection("Data Source=DESKTOP-PPM9TPL;Initial Catalog=kullanici_proje;Integrated Security=True"))
+            using (var adapter = new SqlDataAdapter("SELECT * FROM musteri_hesap_bilgileri WHERE musteri_no =" + hesapMusteriNo, connection1))
+            {
+
+                var table = new DataTable();
+                Console.WriteLine(table.Columns);
+                adapter.Fill(table);
+                // Eğer DataTable içinde sütunlar varsa
+                if (table.Columns.Contains("doviz_cinsi") && table.Columns.Contains("bakiye"))
+                {
+                    var filteredTable = new DataTable();
+                    filteredTable.Columns.Add("bakiye", typeof(decimal));
+                    filteredTable.Columns.Add("doviz_cinsi", typeof(string)); // Eğer "doviz_cinsi" int türündeyse uygun türü seçmelisiniz
+                    filteredTable.Columns.Add("tl_karsiligi", typeof(decimal));
+                    
+
+                    // Örneğin, her satırdaki değerlere erişim
+                    foreach (DataRow row in table.Rows)
+                    {
+                        decimal deger = 1;
+                        int dovizCinsiValue = Convert.ToInt32(row["doviz_cinsi"]);
+                        switch (dovizCinsiValue)
+                        {
+                            case 1:
+                                deger = 1;
+                                break;
+                            case 2:
+                                deger = usdRate;
+                                break;
+                            case 3:
+                                deger = eurRate;
+                                break;
+                            case 4:
+                                deger = gbpRate;
+                                break;
+                            case 5:
+                                deger = rubRate;
+                                break;
+                            default:
+                                break;
+                        }
+                        string dovizCinsiText = GetDovizCinsiText(dovizCinsiValue);
+                        decimal tl = Convert.ToDecimal(row["bakiye"]) / deger;
+                        Console.WriteLine(Convert.ToDecimal(dovizCinsiValue));
+                        // Doviz_Cinsi_Text sütununa değeri ekle
+                        //row["Doviz_Cinsi_Text"] = dovizCinsiText;
+                        var newRow = filteredTable.NewRow();
+                        newRow["doviz_cinsi"] = dovizCinsiText;
+                        newRow["tl_karsiligi"] = tl.ToString("0.00");
+                        newRow["bakiye"] = Convert.ToDecimal(row["bakiye"]);
+                        filteredTable.Rows.Add(newRow);
+
+                        // Şimdi, dovizCinsiText ve bakiye değerlerini kullanabilirsiniz
+                        Console.WriteLine($"Döviz Cinsi: {dovizCinsiText}, Bakiye: {row["bakiye"]}");
+                    }
+
+                    // İlk sütunun adını değiştirme (isteğe bağlı)
+                    table.Columns["doviz_cinsi"].ColumnName = "Doviz_Cinsi";
+                    table.Columns.Remove("doviz_cinsi");
+                    table.Columns.Remove("bakiye");
+                    table.Columns.Remove("hesabi_acan_sicil");
+                    // İkinci sütunu kaldırma (isteğe bağlı)
+                    //table.Columns.Remove("doviz_cinsi");
+
+                    // DataGridView'e yeni DataTable'ı bağlama
+                    dataGridView2.DataSource = filteredTable.DefaultView;
+                }
+                else
+                {
+                    // İlgili sütunlar bulunamazsa hata mesajı yazdırma veya işlem yapma
+                    Console.WriteLine("Hata: 'doviz_cinsi' veya 'bakiye' sütunları bulunamadı.");
+                }
+                this.dataGridView1.DataSource = table;
+            }
+            
             if (!musteriVarMi)
             {
                 MessageBox.Show("Girilen Tc no ile müşteri bulunamadı.");
@@ -656,6 +754,50 @@ namespace proje_personel
             }
         }
 
+        private string GetDovizCinsiText(int dovizTuruValue)
+        {
+            switch (dovizTuruValue)
+            {
+                case 1:
+                    return "TRY";
+                case 2:
+                    return "USD";
+                case 3:
+                    return "EUR";
+                case 4:
+                    return "GBP";
+                case 5:
+                    return "RUB";
+                default:
+                    return "Bilinmeyen Döviz Türü";
+            }
+        }
+        private async Task<ExchangeRates> GetExchangeRates(string apiUrl)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                // API'ye GET isteği gönderme
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // API'den gelen JSON verisini çözme
+                    string json = await response.Content.ReadAsStringAsync();
+                    ExchangeRates exchangeRates = Newtonsoft.Json.JsonConvert.DeserializeObject<ExchangeRates>(json);
+                    return exchangeRates;
+                }
+                else
+                {
+                    throw new HttpRequestException($"API'den veri çekme hatası: {response.StatusCode}");
+                }
+            }
+        }
+        public class ExchangeRates
+        {
+            public string Base { get; set; }
+            public DateTime Date { get; set; }
+            public JObject Rates { get; set; }
+        }
         private void maskedTextBox15_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
@@ -719,7 +861,7 @@ namespace proje_personel
                 }
             }
             string ekle = "INSERT INTO musteri_hesap_bilgileri(musteri_no, hesap_no,doviz_cinsi, bakiye, sube_kodu,hesap_acilis_tarihi,durum_kodu,hesap_rumuzu) values (@musteri_no, @hesap_no," +
-                   " @doviz_cinsi, @bakiye, @sube_kodu, @hesap_acilis_tarihi, @durum_kodu, @hesap_rumuzu)";
+              " @doviz_cinsi, @bakiye, @sube_kodu, @hesap_acilis_tarihi, @durum_kodu, @hesap_rumuzu)";
 
             string input = "0015800000" + comboBox8.SelectedValue + "00000" + (hesapSayisi + 1);
             Int64 hesap_no = Int64.Parse(input);
@@ -741,6 +883,21 @@ namespace proje_personel
             komut1.ExecuteNonQuery();
             MessageBox.Show("Hesap Oluşturuldu.\nOluşturuluan Hesap Numarası: " + input);
             baglanti.Close();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox20_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
